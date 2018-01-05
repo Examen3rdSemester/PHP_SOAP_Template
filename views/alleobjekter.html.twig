@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objekter</title>
+</head>
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+<body>
+
+<h2>Alle Objekter</h2>
+<br />
+{% if alleobjekter is empty %}
+    Ingen objekter
+{% else %}
+    <table  class="table table-bordered table-striped" id="customers">
+        {% for obj in alleobjekter %}
+            <tr>
+                <td style="background: red; text-align: left"><br>
+                    id: {{ obj.Id }}
+                </td>
+                <td style="text-align: left"><br>
+                    navn: {{ obj.ChangeString }} {{ obj.ChangeString1 }}
+                </td>
+                <td style="text-align: left"><br>
+                    arbejdsdage: {{ obj.ChangeInteger }}
+                </td>
+                <td style="text-align: left"><br>
+                    Løn: {{ obj.ChangeDouble }}
+                </td>
+                <td style="text-align: right">
+                    <a class="link-btn" href="deleteobjekt.php?id={{ obj.Id }}">Delete</a>
+                </td>
+                <td style="text-align: right">
+                    <a class="link-btn" href="../controllers/beforeupdateobjekt.php?id={{ obj.Id }}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}</table>
+{% endif %}
+</body>
+</html>
